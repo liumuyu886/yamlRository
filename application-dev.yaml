@@ -2,17 +2,10 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: attachments
-          uri: lb://attachment
-          predicates:
-            - Path=/api/attachments/**
-
-        - id: importexport
-          uri: lb://importexport
-          predicates:
-            - Path=/api/importExports/**
-
-        - id: b2b
-          uri: lb://b2b
-          predicates:
-            - Path=/api/**
+      - id: header
+        uri: http://localhost:8888/header
+        filters:
+        - AddRequestHeader=header, addHeader
+        - AddRequestParameter=param, addParam
+        predicates:
+        - Path=/jd
